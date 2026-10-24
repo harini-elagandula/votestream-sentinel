@@ -1,0 +1,42 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VoteStream Sentinel - Live Updates</title>
+</head>
+<body>
+    <h1>VoteStream Sentinel</h1>
+    <p id="status">Connecting...</p>
+    <pre id="messages"></pre>
+
+    <script>
+        const status = document.getElementById("status");
+        const messages = document.getElementById("messages");
+
+        const protocol = location.protocol === "https:" ? "wss:" : "ws:";
+        const socket = new WebSocket(
+            `${protocol}//127.0.0.1:8000/ws/votes`
+        );
+
+        socket.onopen = () => {
+            status.textContent = "Connected";
+        };
+
+        socket.onmessage = (event) => {
+            const data = JSON.parse(event.data);
+            messages.textContent +=
+                JSON.stringify(data, null, 2) + "\n\n";
+        };
+
+        socket.onerror = () => {
+            status.textContent = "Connection error";
+        };
+
+        socket.onclose = () => {
+            status.textContent = "Disconnected";
+        };
+    </script>
+</body>
+</html>

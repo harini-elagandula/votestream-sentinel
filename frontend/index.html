@@ -1,0 +1,107 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VoteStream Sentinel | Live Voting</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="topbar">
+        <div class="brand">
+            <div class="brand-icon">VS</div>
+            <div>
+                <h1>VoteStream Sentinel</h1>
+                <p>Real-Time Voting & Trust Analytics</p>
+            </div>
+        </div>
+        <div class="connection">
+            <span id="connectionDot" class="dot"></span>
+            <span id="connectionStatus">Connecting...</span>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="welcome">
+            <div>
+                <p class="eyebrow">VOTING CONTROL CENTER</p>
+                <h2>Live Results Dashboard</h2>
+                <p>Manage demo elections and monitor vote totals in real time.</p>
+            </div>
+            <button id="refreshButton" class="secondary-btn">Refresh Results</button>
+        </section>
+
+        <section class="panel">
+            <h3>Select Election</h3>
+            <div class="inline-form">
+                <select id="electionSelect">
+                    <option value="">Loading elections...</option>
+                </select>
+                <button id="loadButton" class="primary-btn">Load Results</button>
+            </div>
+            <p id="electionInfo" class="muted">Choose an election to view its results.</p>
+        </section>
+
+        <section class="stats-grid">
+            <article class="stat-card">
+                <p>Total Votes</p>
+                <h2 id="totalVotes">0</h2>
+                <span>Recorded votes</span>
+            </article>
+            <article class="stat-card">
+                <p>Candidates</p>
+                <h2 id="candidateCount">0</h2>
+                <span>In selected election</span>
+            </article>
+            <article class="stat-card">
+                <p>Election Status</p>
+                <h2 id="electionStatus">—</h2>
+                <span>Current status</span>
+            </article>
+        </section>
+
+        <section class="panel">
+            <div class="section-heading">
+                <div>
+                    <h3>Candidate Results</h3>
+                    <p class="muted">Updates automatically when a vote is recorded.</p>
+                </div>
+                <span class="live-label">● LIVE</span>
+            </div>
+            <div id="results" class="results-grid">
+                <p class="muted">Select an election to load results.</p>
+            </div>
+        </section>
+
+        <section class="panel">
+            <h3>Cast a Demo Vote</h3>
+            <p class="muted">For classroom and portfolio testing only.</p>
+            <form id="voteForm">
+                <label for="voterId">Demo voter ID</label>
+                <input id="voterId" maxlength="100"
+                       placeholder="e.g. demo-voter-101" required>
+
+                <label for="candidateSelect">Choose candidate</label>
+                <select id="candidateSelect" required>
+                    <option value="">Select a candidate</option>
+                </select>
+
+                <button class="primary-btn" type="submit">Submit Demo Vote</button>
+            </form>
+            <p id="voteMessage" role="status"></p>
+        </section>
+
+        <section class="panel">
+            <h3>Activity Log</h3>
+            <div id="activityLog" class="activity-log">Dashboard started.</div>
+        </section>
+
+        <footer>
+            VoteStream Sentinel · Educational demonstration only
+        </footer>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
